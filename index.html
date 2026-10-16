@@ -51,8 +51,34 @@
                 </article>
             </div>
         </section>
+        <!-- HU-02: Sección de Filtros de Búsqueda Dinámica -->
+        <section id="empresas" class="search-section">
+            <div class="search-container">
+                <h2>Encuentra tu empresa de domótica</h2>
+                <p>Filtra por ciudad o categoría para ver las opciones disponibles.</p>
+        
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Ej. Medellín, Bogotá...">
+            
+                    <select id="serviceSelect">
+                        <option value="">Todas las categorías</option>
+                        <option value="iluminacion">Iluminación</option>
+                        <option value="seguridad">Seguridad</option>
+                        <option value="climatizacion">Climatización</option>
+                    </select>
+            
+                    <button id="searchBtn">Buscar</button>
+                </div>
+
+                <!-- Contenedor donde se mostrarán dinámicamente las tarjetas de empresas -->
+                <div id="resultsContainer" class="results-grid">
+                    <!-- Las tarjetas se inyectarán aquí mediante JavaScript -->
+                </div>
+            </div>
+        </section>
     </main>
 
-    <script src="script.js"></script>
+
+    <script src="JS/script.js"></script>
 </body>
 </html>
