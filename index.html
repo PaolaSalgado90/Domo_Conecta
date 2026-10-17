@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DomoConecta - Conectando Hogares Inteligentes</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+    <!-- Menú de Navegación (Incluye el enlace a la sección educacional) -->
+    <header class="navbar">
+        <div class="logo">DomoConecta</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#aprende">Aprende Domótica</a></li> <!-- HU-01: Enlace de navegación -->
+                <li><a href="#empresas">Empresas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección Principal / Hero -->
+        <section id="inicio" class="hero">
+            <!-- Título Principal H1 exigido -->
+            <h1>Transforma tu hogar con soluciones de domótica confiables</h1>
+            <p>Conectamos tus necesidades de automatización con las mejores empresas verificadas del mercado.</p>
+        </section>
+
+        <!-- HU-01: Sección Educacional / Aprende Domótica -->
+        <section id="aprende" class="educacional-section">
+            <h2>Aprende Domótica antes de cotizar</h2>
+            <p class="subtitle">Entiende las categorías clave para tomar la mejor decisión en tu vivienda:</p>
+            
+            <div class="cards-container">
+                <article class="edu-card">
+                    <h3>💡 Iluminación Inteligente</h3>
+                    <p>Controla la intensidad, horarios y colores de las luces de tu casa mediante comandos de voz o aplicaciones móviles.</p>
+                </article>
+
+                <article class="edu-card">
+                    <h3>🔒 Seguridad y Acceso</h3>
+                    <p>Protege tu hogar con cerraduras inteligentes, cámaras de vigilancia IP y sensores de movimiento perimetral.</p>
+                </article>
+
+                <article class="edu-card">
+                    <h3>🌡️ Climatización</h3>
+                    <p>Automatiza aires acondicionados y calefacción para mantener el confort térmico ahorrando energía.</p>
+                </article>
+            </div>
+        </section>
+        <!-- HU-02: |Sección de Filtros de Búsqueda Dinámica -->
+        <section id="empresas" class="search-section">
+            <div class="search-container">
+                <h2>Encuentra tu empresa de domótica</h2>
+                <p>Filtra por ciudad o categoría para ver las opciones disponibles.</p>
+        
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Ej. Medellín, Bogotá...">
+            
+                    <select id="serviceSelect">
+                        <option value="">Todas las categorías</option>
+                        <option value="iluminacion">Iluminación</option>
+                        <option value="seguridad">Seguridad</option>
+                        <option value="climatizacion">Climatización</option>
+                    </select>
+            
+                    <button id="searchBtn">Buscar</button>
+                </div>
+
+                <!-- Contenedor donde se mostrarán dinámicamente las tarjetas de empresas -->
+                <div id="resultsContainer" class="results-grid">
+                    <!-- Las tarjetas se inyectarán aquí mediante JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- HU-03: Vista de Detalle de Empresa (Modal o Sección Oculta) -->
+        <div id="detalleModal" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+                <button id="closeModal" class="close-btn">&times;</button>
+                <h2 id="detalleNombre">Nombre de la Empresa</h2>
+                <p class="empresa-meta"><strong>Ciudad:</strong> <span id="detalleCiudad">Medellín</span> | <strong>Calificación:</strong> <span id="detalleRating">⭐⭐⭐⭐⭐ (4.9)</span></p>
+        
+                <hr>
+        
+                <div class="detalle-body">
+                    <h3>Sobre nosotros</h3>
+                    <p id="detalleDescripcion">Descripción detallada de la trayectoria y experiencia de la empresa en domótica.</p>
+            
+                    <h3>Certificaciones y Años en el Mercado</h3>
+                    <p id="detalleCert">Certificación oficial KNX / 8 años de experiencia en el sector.</p>
+
+                    <h3>Galería de Proyectos</h3>
+                    <div class="proyecto-galeria">
+                        <div class="img-placeholder">Proyecto 1: Iluminación Residencial</div>
+                        <div class="img-placeholder">Proyecto 2: Automatización de Oficinas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <!-- HU-04: Sección del Formulario de Solicitud de Cotización -->
+        <section id="contacto" class="contacto-section" style="padding: 3rem 2rem; background: #f1f5f9; margin-top: 2rem;">
+            <div style="max-width: 600px; margin: 0 auto; background: #ffffff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                <h2>Solicitar Cotización de Domótica</h2>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">Completa el formulario para que la empresa seleccionada se ponga en contacto contigo.</p>
+        
+                <form id="cotizacionForm">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="tipoInmueble" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Tipo de Inmueble</label>
+                        <select id="tipoInmueble" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                            <option value="">Selecciona una opción</option>
+                            <option value="casa">Casa Residencial</option>
+                            <option value="apartamento">Apartamento</option>
+                            <option value="oficina">Oficina Comercial</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="mensajeRequerimiento" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Detalles o Servicios Requeridos</label>
+                        <textarea id="mensajeRequerimiento" rows="4" placeholder="Ej. Quiero automatizar las luces y la chapa de la puerta principal..." required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;"></textarea>
+                    </div>
+
+                    <button type="submit" style="width: 100%; background: #0f172a; color: #fff; padding: 0.75rem; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Enviar Solicitud</button>
+                </form>
+
+                <!-- Mensaje de éxito simulado con código único -->
+                <div id="formAlert" style="margin-top: 1rem; display: none; padding: 1rem; background: #dcfce7; color: #166534; border-radius: 6px; font-size: 0.9rem;"></div>
+            </div>
+        </section>
+                <!-- HU-05: Sección de Registro para PYMEs de Domótica -->
+        <section id="registro-pyme" class="pyme-section" style="padding: 3rem 2rem; background: #ffffff; margin-top: 2rem;">
+            <div style="max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 2.5rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                <h2>¿Eres una Empresa de Domótica?</h2>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">Registra tu empresa en DomoConecta y recibe solicitudes de clientes calificados en tu zona.</p>
+        
+                <form id="pymeRegisterForm">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="pymeNit" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">NIT de la Empresa</label>
+                        <input type="text" id="pymeNit" placeholder="Ej. 900.123.456-1" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                 </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="pymeRazonSocial" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Razón Social o Nombre Comercial</label>
+                        <input type="text" id="pymeRazonSocial" placeholder="Ej. SmartSpaces SAS" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="pymeCiudad" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Ciudad Principal de Operación</label>
+                        <input type="text" id="pymeCiudad" placeholder="Ej. Medellín" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                 </div>
+
+                    <button type="submit" style="width: 100%; background: #0284c7; color: #fff; padding: 0.75rem; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Registrar Empresa</button>
+                </form>
+
+                <!-- Mensaje de estado inicial Pendiente -->
+             <div id="pymeAlert" style="margin-top: 1rem; display: none; padding: 1rem; background: #fef9c3; color: #854d0e; border-radius: 6px; font-size: 0.9rem;"></div>
+            </div>
+        </section>
+
+
+    <script src="JS/script.js"></script>
+</body>
+</html>
