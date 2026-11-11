@@ -108,3 +108,91 @@ window.addEventListener('click', (e) => {
         modal.style.display = 'none';
     }
 });
+
+// HU-06: Lógica para la Gestión de Portafolio de Servicios de PYME
+let portafolioServicios = [
+    { id: 1, nombre: "Kit de Cámaras de Seguridad IP", categoria: "Seguridad", espec: "Cámaras Full HD con visión nocturna y detección de movimiento.", activo: true },
+    { id: 2, nombre: "Control de Climatización Inteligente", categoria: "Climatización", espec: "Termostato programable con control desde app móvil.", activo: true }
+];
+
+const nuevoServicioForm = document.getElementById('nuevoServicioForm');
+const listaServiciosContainer = document.getElementById('listaServicios');
+
+// Función para renderizar la lista de servicios
+function renderizarPortafolio() {
+    if (!listaServiciosContainer) return;
+    listaServiciosContainer.innerHTML = "";
+
+    if (portafolioServicios.length === 0) {
+        listaServiciosContainer.innerHTML = `<p style="color: #64748b;">No tienes servicios registrados en tu portafolio.</p>`;
+        return;
+    }
+
+    portafolioServicios.forEach(servicio => {
+        const item = document.createElement('div');
+        item.style.cssText = "background: #ffffff; padding: 1.25rem; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;";
+
+        item.innerHTML = `
+            <div>
+                <h4 style="margin: 0 0 0.25rem 0; font-size: 1rem;">${servicio.nombre} <span style="font-size: 0.8rem; padding: 2px 8px; border-radius: 12px; background: ${servicio.activo ? '#dcfce7' : '#fee2e2'}; color: ${servicio.activo ? '#166534' : '#991b1b'};">${servicio.activo ? 'Activo' : 'Inactivo'}</span></h4>
+                <p style="margin: 0; font-size: 0.85rem; color: #64748b;"><strong>Categoría:</strong> ${servicio.categoria}</p>
+                <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #334155;">${servicio.espec}</p>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+                <button class="btn-toggle-estado" data-id="${servicio.id}" style="padding: 0.5rem 0.75rem; border: none; border-radius: 6px; cursor: pointer; background: ${servicio.activo ? '#f59e0b' : '#10b981'}; color: #fff; font-size: 0.8rem;">
+                    ${servicio.activo ? 'Desactivar' : 'Activar'}
+                </button>
+                <button class="btn-eliminar-servicio" data-id="${servicio.id}" style="padding: 0.5rem 0.75rem; border: none; border-radius: 6px; cursor: pointer; background: #ef4444; color: #fff; font-size: 0.8rem;">
+                    Eliminar
+                </button>
+            </div>
+        `;
+
+        // Evento para cambiar estado (Activar / Desactivar)
+        item.querySelector('.btn-toggle-estado').addEventListener('click', () => {
+            servicio.activo = !servicio.activo;
+            renderizarPortafolio();
+        });
+
+        // Evento para eliminar servicio
+        item.querySelector('.btn-eliminar-servicio').addEventListener('click', () => {
+            portafolioServicios = portafolioServicios.filter(s => s.id !== servicio.id);
+            renderizarPortafolio();
+        });
+
+        listaServiciosContainer.appendChild(item);
+    });
+}
+
+// Evento de envío del formulario para agregar un nuevo servicio
+if (nuevoServicioForm) {
+    nuevoServicioForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nombre = document.getElementById('servicioNombre').value.trim();
+        const categoria = document.getElementById('servicioCategoria').value;
+        const espec = document.getElementById('servicioEspec').value.trim();
+
+        if (nombre === "" || categoria === "" || espec === "") {
+            alert("Por favor completa todos los campos del servicio.");
+            return;
+        }
+
+        const nuevoServicio = {
+            id: Date.now(),
+            nombre: nombre,
+            categoria: categoria,
+            espec: espec,
+            activo: true
+        };
+
+        portafolioServicios.push(nuevoServicio);
+        renderizarPortafolio();
+        nuevoServicioForm.reset();
+    });
+}
+
+// Inicializar vista al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarPortafolio();
+});
