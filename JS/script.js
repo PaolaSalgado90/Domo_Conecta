@@ -310,3 +310,84 @@ if (resenaForm) {
         resenaForm.reset();
     });
 }
+// HU-09 (PC1025-35): Lógica para la Aprobación y Verificación de PYMEs (Panel Admin)
+let pymesPorVerificar = [
+    { id: 1, nit: "900.123.456-1", razonSocial: "SmartSpaces SAS", ciudad: "Medellín", estado: "Pendiente de Validación" },
+    { id: 2, nit: "900.987.654-2", razonSocial: "Domótica Avanzada Ltda", ciudad: "Bogotá", estado: "Pendiente de Validación" }
+];
+
+const adminContainer = document.getElementById('listaAdminPymes');
+
+function renderizarAprobacionPymes() {
+    if (!adminContainer) return;
+    adminContainer.innerHTML = "";
+
+    if (pymesPorVerificar.length === 0) {
+        adminContainer.innerHTML = `<p style="color: #64748b;">No hay empresas pendientes por verificar en este momento.</p>`;
+        return;
+    }
+
+    pymesPorVerificar.forEach(pyme => {
+        let colorEstado = "#b45309"; // Pendiente
+        if (pyme.estado === "Verificado") colorEstado = "#166534"; // Verde
+        if (pyme.estado === "Rechazado") colorEstado = "#991b1b"; // Rojo
+
+        const item = document.createElement('div');
+        item.style.cssText = "background: #ffffff; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;";
+
+        item.innerHTML = `
+            <div>
+                <h4 style="margin: 0 0 0.25rem 0; font-size: 1.05rem; color: #0f172a;">${pyme.razonSocial}</h4>
+                <p style="margin: 0; font-size: 0.85rem; color: #64748b;"><strong>NIT:</strong> ${pyme.nit} | <strong>Ciudad:</strong> ${pyme.ciudad}</p>
+                <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem;"><strong>Estado:</strong> <span style="font-weight: bold; color: ${colorEstado};">${pyme.estado}</span></p>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+                ${pyme.estado === 'Pendiente de Validación' ? `
+                    <button class="btn-aprobar" data-id="${pyme.id}" style="padding: 0.5rem 0.75rem; border: none; border-radius: 6px; cursor: pointer; background: #16a34a; color: #fff; font-weight: bold; font-size: 0.8rem;">Aprobar</button>
+                    <button class="btn-rechazar" data-id="${pyme.id}" style="padding: 0.5rem 0.75rem; border: none; border-radius: 6px; cursor: pointer; background: #dc2626; color: #fff; font-weight: bold; font-size: 0.8rem;">Rechazar</button>
+                ` : `<span style="font-size: 0.85rem; font-style: italic; color: #64748b;">Procesado</span>`}
+            </div>
+        `;
+
+        if (pyme.estado === 'Pendiente de Validación') {
+            item.querySelector('.btn-aprobar').addEventListener('click', () => {
+                pyme.estado = "Verificado";
+                renderizarAprobacionPymes();
+            });
+            item.querySelector('.btn-rechazar').addEventListener('click', () => {
+                pyme.estado = "Rechazado";
+                renderizarAprobacionPymes();
+            });
+        }
+
+        adminContainer.appendChild(item);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarAprobacionPymes();
+});
+// HU-10 (PC1025-36): Lógica para Autenticación e Inicio de Sesión Seguro
+const loginForm = document.getElementById('loginForm');
+const loginAlert = document.getElementById('loginAlert');
+
+if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+
+        if (email === "" || password === "") {
+            alert("Por favor ingresa tu correo y contraseña.");
+            return;
+        }
+
+        // Simulación de validación y encriptación segura de credenciales para acceso al panel
+        loginAlert.style.display = 'block';
+        loginAlert.innerHTML = `<strong>¡Bienvenido!</strong> Autenticación exitosa para <strong>${email}</strong>. Redirigiendo al panel privado...`;
+
+        // Limpiar formulario
+        loginForm.reset();
+    });
+}
