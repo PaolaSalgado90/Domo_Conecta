@@ -130,6 +130,118 @@
                 <div id="formAlert" style="margin-top: 1rem; display: none; padding: 1rem; background: #dcfce7; color: #166534; border-radius: 6px; font-size: 0.9rem;"></div>
             </div>
         </section>
+                <!-- HU-05: Sección de Registro para PYMEs de Domótica -->
+        <section id="registro-pyme" class="pyme-section" style="padding: 3rem 2rem; background: #ffffff; margin-top: 2rem;">
+            <div style="max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 2.5rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                <h2>¿Eres una Empresa de Domótica?</h2>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">Registra tu empresa en DomoConecta y recibe solicitudes de clientes calificados en tu zona.</p>
+        
+                <form id="pymeRegisterForm">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="pymeNit" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">NIT de la Empresa</label>
+                        <input type="text" id="pymeNit" placeholder="Ej. 900.123.456-1" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                 </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="pymeRazonSocial" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Razón Social o Nombre Comercial</label>
+                        <input type="text" id="pymeRazonSocial" placeholder="Ej. SmartSpaces SAS" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="pymeCiudad" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Ciudad Principal de Operación</label>
+                        <input type="text" id="pymeCiudad" placeholder="Ej. Medellín" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                 </div>
+
+                    <button type="submit" style="width: 100%; background: #0284c7; color: #fff; padding: 0.75rem; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Registrar Empresa</button>
+                </form>
+
+                <!-- Mensaje de estado inicial Pendiente -->
+             <div id="pymeAlert" style="margin-top: 1rem; display: none; padding: 1rem; background: #fef9c3; color: #854d0e; border-radius: 6px; font-size: 0.9rem;"></div>
+            </div>
+        </section>
+        <!-- HU-06: PC1025-32 - Gestión de Portafolio de Servicios de PYME -->
+        <section id="gestion-portafolio" class="portafolio-section" style="padding: 3rem 2rem; background: #ffffff; margin-top: 2rem;">
+            <div style="max-width: 800px; margin: 0 auto; background: #f8fafc; padding: 2.5rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                <h2>Gestión de Portafolio de Servicios (PYME)</h2>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">Administra y actualiza el catálogo de servicios que ofreces en tu perfil empresarial.</p>
+        
+                <!-- Formulario para agregar servicios -->
+                <form id="nuevoServicioForm" style="margin-bottom: 2rem; background: #ffffff; padding: 1.5rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+                    <h3 style="margin-top: 0; font-size: 1.1rem;">Añadir Servicio al Catálogo</h3>
+            
+                    <div style="margin-bottom: 1rem;">
+                        <label for="servicioNombre" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Nombre del Servicio</label>
+                        <input type="text" id="servicioNombre" placeholder="Ej. Instalación de Cámaras de Seguridad" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="servicioCategoria" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Categoría</label>
+                        <select id="servicioCategoria" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                            <option value="">Selecciona una categoría</option>
+                            <option value="Iluminación">Iluminación</option>
+                            <option value="Seguridad">Seguridad</option>
+                            <option value="Climatización">Climatización</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="servicioEspec" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Descripción o Especificaciones</label>
+                        <textarea id="servicioEspec" rows="3" placeholder="Ej. Cámaras IP Full HD con visión nocturna..." required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;"></textarea>
+                    </div>
+
+                    <button type="submit" style="background: #2563eb; color: #fff; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Guardar Servicio</button>
+                </form>
+
+                <!-- Lista del catálogo actual -->
+                <h3>Catálogo de Servicios Ofrecidos</h3>
+                <div id="listaServicios" style="display: flex; flex-direction: column; gap: 1rem;">
+            <!-- Contenido dinámico -->
+                </div>
+            </div>
+        </section>
+        <!-- HU-07 (PC1025-33): Bandeja de Gestión de Solicitudes Recibidas (Panel PYME) -->
+        <section id="bandeja-solicitudes" class="solicitudes-section" style="padding: 3rem 2rem; background: #f8fafc; margin-top: 2rem;">
+            <div style="max-width: 900px; margin: 0 auto; background: #ffffff; padding: 2.5rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+             <h2>Bandeja de Gestión de Solicitudes Recibidas</h2>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">Visualiza y gestiona las solicitudes de cotización enviadas por los usuarios para atender oportunidades de negocio y cambiar el estado comercial.</p>
+        
+                <!-- Contenedor de la bandeja -->
+                <div id="bandejaSolicitudesContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+                 <!-- Contenido dinámico mediante JavaScript -->
+                </div>
+            </div>
+        </section>
+        <!-- HU-08 (PC1025-34): Calificación y Reseña de Servicios Contratados -->
+        <section id="calificacion-resena" class="resena-section" style="padding: 3rem 2rem; background: #ffffff; margin-top: 2rem;">
+            <div style="max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 2.5rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                <h2>Calificar Servicio Contratado</h2>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">Deja tu calificación en estrellas y comparte tu experiencia con la empresa de domótica para ayudar a otros usuarios.</p>
+        
+                <form id="resenaForm">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="estrellas" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Calificación (Estrellas)</label>
+                        <select id="estrellas" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff;">
+                            <option value="">Selecciona una calificación</option>
+                            <option value="5">⭐⭐⭐⭐⭐ (5 - Excelente)</option>
+                            <option value="4">⭐⭐⭐⭐ (4 - Muy bueno)</option>
+                            <option value="3">⭐⭐⭐ (3 - Bueno)</option>
+                            <option value="2">⭐⭐ (2 - Regular)</option>
+                            <option value="1">⭐ (1 - Malo)</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="comentarioResena" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Reseña Escrita</label>
+                        <textarea id="comentarioResena" rows="4" placeholder="Escribe tu opinión sobre el trabajo realizado por la empresa..." required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px;"></textarea>
+                    </div>
+
+                    <button type="submit" style="width: 100%; background: #4f46e5; color: #fff; padding: 0.75rem; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Publicar Calificación</button>
+                </form>
+
+                <!-- Mensaje de éxito -->
+                <div id="resenaAlert" style="margin-top: 1rem; display: none; padding: 1rem; background: #dcfce7; color: #166534; border-radius: 6px; font-size: 0.9rem;"></div>
+            </div>
+        </section>
 
 
     <script src="JS/script.js"></script>
